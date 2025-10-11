@@ -1,1 +1,0 @@
-# Gruppe2_Semesteroppgave
