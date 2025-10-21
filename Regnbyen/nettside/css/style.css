@@ -1584,7 +1584,7 @@ js
   color: #334155;
 }
 #wx-mini-icon {
-  font-size: 1.05rem;
+  font-size: 1.3rem;
   line-height: 1;
 }
 #wx-mini-temp {
@@ -1611,13 +1611,17 @@ js
 }
 .wx-row {
   display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 0.6rem;
+  grid-template-columns: 80px 1fr;
+  gap: 0.3rem;
+  column-gap: .9rem;
   align-items: center;
 }
 .wx-icon {
-  font-size: 2rem;
+  font-size: 4.5rem;
   text-align: center;
+  line-height: 2; 
+  padding-right: .15rem;
+  margin-top: .25rem;
 }
 .wx-temp {
   font-size: 1.6rem;
@@ -1666,4 +1670,11 @@ js
 .navbar .dropdown details[open] > .submenu.shift-right{
   transform: translateX(8px);   
 }
+.wx-now  { font-size: .95rem; color:#475569; letter-spacing:.2px; }
+.wx-big  { font-size: 1.02rem; font-weight: 800; line-height: 1.05; }
+.wx-meta { font-size: 1.02rem; color:#0c4a6e; }
+.wx-main{ display:flex; flex-direction:column; gap:.25rem; }
+.wx-temp,
+.wx-now,
+.wx-meta { margin: 0; }  
 
