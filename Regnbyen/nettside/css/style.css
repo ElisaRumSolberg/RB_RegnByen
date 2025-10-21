@@ -587,12 +587,13 @@ table caption {
 }
 table thead th {
   text-align: left;
-  font-weight: 700;
+  font-weight: 500;
   background: #f8fafc;
-  color: #0f172a;
+  color: #797b7f;
   border-bottom: 1px solid var(--border);
   padding: 12px;
   white-space: nowrap;
+  font-size: 1.3rem;
 }
 table tbody td {
   padding: 12px;
@@ -1369,16 +1370,17 @@ section[aria-labelledby="produkter"] .cards .card figure > img {
 } /* For bedrifter */
 
 /* ===========================
-   FOR BEDRIFTER – product grid
+   FOR BEDRIFTER – Produktgrid (FULL)
    =========================== */
 
+/* Kategori-seksjon: start med én kolonne på små skjermer */
 section[aria-labelledby="kategori"] > .container > .grid.two {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
 }
 
-/* produkt grid: mobil 1, ≥700px  */
+/* Produktgrid: mobil = 1 kolonne, >=700px = 2 kolonner */
 .product-grid {
   display: grid;
   gap: 16px;
@@ -1390,38 +1392,55 @@ section[aria-labelledby="kategori"] > .container > .grid.two {
   }
 }
 
+/* Nøytral kategoriwrapper (tittel o.l.) */
 .category {
   padding: 0;
   border: 0;
   background: transparent;
 }
-/* Product card */
+
+/* ===========================
+   KORT – runde hjørner + toppstripe fiks
+   =========================== */
 .bedrifter .product-grid > .card {
   position: relative;
   display: flex;
   flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px; /* ytre hjørner */
+  box-shadow: var(--shadow);
+  padding: 16px;
+  overflow: hidden; /* klipp toppstripen i hjørnene */
 }
+
+/* Farget toppstripe inni kortet */
 .bedrifter .product-grid > .card::before {
   content: "";
   position: absolute;
-  left: -1px;
-  right: -1px;
-  top: -1px;
+  left: 0; /* ingen -1px offset */
+  right: 0;
+  top: 0;
   height: 6px;
   background: var(--prod-accent, #2563eb);
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  border-top-left-radius: inherit; /* arver kortets radius */
+  border-top-right-radius: inherit;
+  pointer-events: none;
 }
+
+/* Bildesone inni kortet */
 .bedrifter .product-grid > .card figure {
   margin: 0 0 14px;
   aspect-ratio: 4 / 3;
   height: auto;
   background: #f8fafc;
   border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  border-radius: 12px; /* litt mindre radius enn kortet */
   padding: 8px;
   overflow: hidden;
 }
+
+/* Bildet skaleres pent i rammen */
 .bedrifter .product-grid > .card figure > img {
   width: 100% !important;
   height: 100% !important;
@@ -1430,30 +1449,37 @@ section[aria-labelledby="kategori"] > .container > .grid.two {
   display: block;
   border-radius: 8px;
 }
+
+/* Tekstblokker: konsistent høyde for jevn layout */
 .bedrifter .product-grid > .card h4 {
   margin: 8px 0 6px;
-  min-height: 2.5em;
+  min-height: 2.5em; /* reserver ~2 linjer */
 }
+
 .bedrifter .product-grid > .card h4 + p {
-  min-height: 4.5em;
+  min-height: 4.5em; /* reserver ~3 linjer */
 }
+
+/* Skyv knapper/lenker til bunnen */
 .bedrifter .product-grid > .card .mt-auto {
   margin-top: auto;
 }
 
-/* farger per produkt */
+/* ===========================
+   Aksentfarger per produkt
+   =========================== */
 .section--purple .product-grid > .card:nth-child(1) {
-  --prod-accent: #7c3aed;
-} /* Skalljakke Pro */
+  --prod-accent: #7c3aed; /* Skalljakke Pro */
+}
 .section--purple .product-grid > .card:nth-child(2) {
-  --prod-accent: #2563eb;
-} /* Vanntett sekk 20L */
+  --prod-accent: #2563eb; /* Vanntett sekk 20L */
+}
 .section--blue .product-grid > .card:nth-child(1) {
-  --prod-accent: #16a34a;
-} /* Vitrine-sett */
+  --prod-accent: #16a34a; /* Vitrine-sett */
+}
 .section--blue .product-grid > .card:nth-child(2) {
-  --prod-accent: #f59e0b;
-} /* Plakatpakke */
+  --prod-accent: #f59e0b; /* Plakatpakke */
+}
 
 /* ===========================
    RESPONSIVE
@@ -1497,3 +1523,147 @@ section[aria-labelledby="kategori"] > .container > .grid.two {
     padding: var(--s3);
   }
 }
+
+/* 
+js
+   
+ */
+/*hjemmeside  */
+
+/* === Værkort søkfelt – stil === */
+.site-header .nav-wrap{
+  display:flex;
+  flex-wrap: wrap;               
+  align-items: center;
+  justify-content: space-between;
+}
+.toolrow {
+    flex: 1 1 100%;               
+  display:flex;
+  justify-content:flex-end;       
+  align-items:center;
+  gap:.5rem;
+  padding:.3rem 0;
+  margin:0;    
+}
+
+.utility-bar {
+  background: transparent;
+  border: none;
+}
+
+.toolrow .nav-search {
+  margin: 0;
+}
+.toolrow .nav-search input {
+  height: 42px;
+  max-width: 360px;
+}
+
+.wx-mini-wrap {
+  margin: 0;
+  position: relative;
+}
+.wx-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid #94a3b8;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  color: #0c4a6e;
+}
+.wx-mini:hover {
+  background: #f1f5f9;
+}
+.wx-loc {
+  font-size: 0.9rem;
+  color: #334155;
+}
+#wx-mini-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+#wx-mini-temp {
+  font-variant-numeric: tabular-nums;
+}
+
+.wx-popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 280px;
+  z-index: 30;
+}
+.wx-popover[hidden] {
+  display: none;
+}
+.wx-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+  padding: 0.85rem 1rem;
+  color: #0c4a6e;
+}
+.wx-row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 0.6rem;
+  align-items: center;
+}
+.wx-icon {
+  font-size: 2rem;
+  text-align: center;
+}
+.wx-temp {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+.wx-desc {
+  font-size: 0.95rem;
+  color: #334155;
+  margin-top: 0.1rem;
+}
+.wx-tags {
+  list-style: none;
+  padding: 0;
+  margin: 0.6rem 0 0 0;
+  display: grid;
+  gap: 0.3rem;
+}
+.muted {
+  color: #64748b;
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.8rem;
+}
+
+
+/* Plassering og lag i rullegardinmenyen  for å få været til å vises når rullegardinmenyen er nede*/
+.navbar .dropdown details{ position: relative; }
+.navbar .dropdown details[open] > .submenu{
+  position: absolute;
+  top: calc(100% + 10px);   /* rullegardinmeny: første element vises */
+  right: 0;                
+  z-index: 60;              /* hold deg OVER verktøy/verktøyrad */
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+  padding: 10px 0;          
+  min-width: 260px;         
+}
+
+.navbar .dropdown .submenu > li > a{
+  display: block;
+  padding: 10px 16px;
+  white-space: nowrap;
+}
+.navbar .dropdown details[open] > .submenu.shift-right{
+  transform: translateX(8px);   
+}
+

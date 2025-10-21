@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Regnbyen Bergen A/S – Sko</title>
     <link rel="stylesheet" href="../css/style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=UnifrakturMaguntia&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
   </head>
   <body class="sko">
+    <!-- Skip-lenke lar brukere hoppe forbi navigasjon -->
     <a class="skip-link" href="#main">Hopp til innhold</a>
 
     <!-- HEADER / NAVBAR -->
@@ -19,35 +17,38 @@
       <div class="container nav-wrap">
         <a class="brand" href="hjemside.html">Regnbyen Bergen</a>
 
+        <!-- Semantisk nav; unngå listbox-roller i meny -->
         <nav class="navbar" aria-label="Hovedmeny">
           <ul class="menu">
             <li><a href="hjemside.html">Hjem</a></li>
             <li><a href="prosjekt.html">Om prosjektet</a></li>
 
-            <!-- Løsninger -->
+            <!-- Tastaturvennlig meny via <details>/<summary> -->
             <li class="dropdown">
               <details>
-                <summary aria-haspopup="listbox">Løsninger</summary>
-                <ul class="submenu" role="listbox" aria-label="Løsninger">
+                <summary>
+                  Løsninger
+                  <span class="sr-only"> – åpne/lukke meny</span>
+                </summary>
+                <ul class="submenu" aria-label="Løsninger">
                   <li><a href="bil.html">Bil</a></li>
                   <li><a href="hus.html">Hus</a></li>
                   <li><a href="klaer.html">Klær</a></li>
-                  <li><a href="sko.html">Sko</a></li>
+                  <!-- Merk aktiv underside med aria-current -->
+                  <li><a href="sko.html" aria-current="page">Sko</a></li>
                   <li><a href="vaer-daglig.html">Vær (daglig)</a></li>
                   <li><a href="regn-aktiviteter.html">Aktiviteter</a></li>
+                  <li><a href="transport-sikkerhet.html">Transport &amp; sikkerhet</a></li>
 
-                  <!-- For bedrifter (nested under Løsninger) -->
+                  <!-- Nestet undermeny: For bedrifter -->
                   <li class="dropdown">
                     <details>
-                      <summary aria-haspopup="listbox">For bedrifter</summary>
-                      <ul
-                        class="submenu"
-                        role="listbox"
-                        aria-label="For bedrifter"
-                      >
-                        <li>
-                          <a href="for-bedrifter-produkter.html">Produkter</a>
-                        </li>
+                      <summary>
+                        For bedrifter
+                        <span class="sr-only"> – åpne/lukke undermeny</span>
+                      </summary>
+                      <ul class="submenu" aria-label="For bedrifter">
+                        <li><a href="for-bedrifter-produkter.html">Produkter</a></li>
                         <li><a href="annonsering.html">Annonsering</a></li>
                       </ul>
                     </details>
@@ -58,22 +59,56 @@
             <li><a href="kontakt.html">Kontakt</a></li>
           </ul>
         </nav>
+ <!-- Verktøylinje: søk og vær -->
 
-        <form class="nav-search" role="search" action="#" aria-label="Søk">
-          <label for="q" class="sr-only">Søk</label>
-          <input id="q" name="q" type="search" placeholder="Søk..." />
-        </form>
+        <div class="toolrow">
+          <form class="nav-search" role="search" aria-label="Søk">
+            <label for="q" class="sr-only">Søk</label>
+            <input id="q" name="q" type="search" placeholder="Søk..." />
+          </form>
+
+          <div class="wx-mini-wrap">
+            <button
+              id="wx-mini"
+              class="wx-mini"
+              aria-expanded="false"
+              aria-controls="wx-popover"
+            >
+              <span class="wx-loc">📍 Bergen</span>
+              <span id="wx-mini-icon" aria-hidden="true">⛅</span>
+              <span id="wx-mini-temp">--°C</span>
+              <span class="sr-only">Åpne værdetaljer</span>
+            </button>
+            <div
+              id="wx-popover"
+              class="wx-popover"
+              role="dialog"
+              aria-label="Vær i Bergen"
+              hidden
+            >
+              <div class="wx-card">
+                <div class="wx-row">
+                  <div id="wx-icon" class="wx-icon" aria-hidden="true">⛅</div>
+                  <div class="wx-main">
+                    <div id="nowcast-status" class="wx-temp">Laster…</div>
+                    <div id="wx-desc" class="wx-desc">—</div>
+                  </div>
+                </div>
+                <ul id="nowcast-list" class="wx-tags"></ul>
+                <small id="nowcast-source" class="muted"></small>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
 
-    <main id="main">
+    <!-- MAIN: fokusmål for skip-lenken -->
+    <main id="main" tabindex="-1">
       <section class="section" aria-labelledby="page-title">
         <div class="container">
           <h1 id="page-title">Sko i Bergensregnet</h1>
-          <p>
-            Riktig såle, membran og vedlikehold gir tryggere steg på våte
-            underlag.
-          </p>
+          <p>Riktig såle, membran og vedlikehold gir tryggere steg på våte underlag.</p>
         </div>
       </section>
 
@@ -99,41 +134,27 @@
         </div>
       </section>
 
-      <!-- produkt: 3 kort -->
+      <!-- Produkter: 3 kort -->
       <section class="section" aria-labelledby="produkter">
         <div class="container">
           <h2 id="produkter">Anbefalte produkter</h2>
+          <!-- Unngå duplikate id-er: bruk eget id for gridet -->
           <div id="produkter" class="cards grid-3">
             <!-- 1: Barnesko -->
-            <article
-              class="card feature card--klaer"
-              aria-labelledby="p1-tittel"
-            >
+            <article class="card feature card--klaer" aria-labelledby="p1-tittel">
               <figure>
-                <img
-                  src="../img/skoprod1.webp"
-                  alt="Vanntett barnesko med borrelås (illustrasjon)"
-                />
+                <img src="../img/skoprod1.webp" alt="Vanntett barnesko med borrelås (illustrasjon)" loading="lazy" />
                 <figcaption class="sr-only">Vanntett barnesko</figcaption>
               </figure>
               <h3 id="p1-tittel">Barnesko (vanntett)</h3>
-              <p>
-                Membran, lett grep og enkel borrelås – perfekt til
-                barnehage/skole.
-              </p>
+              <p>Membran, lett grep og enkel borrelås – perfekt til barnehage/skole.</p>
               <p><a class="btn-link" href="#">Mer info</a></p>
             </article>
 
             <!-- 2: Regnstøvel -->
-            <article
-              class="card feature card--klaer"
-              aria-labelledby="p2-tittel"
-            >
+            <article class="card feature card--klaer" aria-labelledby="p2-tittel">
               <figure>
-                <img
-                  src="../img/skoprod2.jpg"
-                  alt="Klassisk regnstøvel med sklisikker såle (illustrasjon)"
-                />
+                <img src="../img/skoprod2.jpg" alt="Klassisk regnstøvel med sklisikker såle (illustrasjon)" loading="lazy" />
                 <figcaption class="sr-only">Regnstøvel</figcaption>
               </figure>
               <h3 id="p2-tittel">Regnstøvel</h3>
@@ -142,21 +163,13 @@
             </article>
 
             <!-- 3: Vanntett hverdags/joggesko -->
-            <article
-              class="card feature card--klaer"
-              aria-labelledby="p3-tittel"
-            >
+            <article class="card feature card--klaer" aria-labelledby="p3-tittel">
               <figure>
-                <img
-                  src="../img/skoprod3.png"
-                  alt="Vanntett joggesko/hverdagsko (illustrasjon)"
-                />
+                <img src="../img/skoprod3.png" alt="Vanntett joggesko/hverdagsko (illustrasjon)" loading="lazy" />
                 <figcaption class="sr-only">Vanntett hverdagsko</figcaption>
               </figure>
               <h3 id="p3-tittel">Vanntett hverdagsko</h3>
-              <p>
-                Pustende membran, god demping og siping for våt asfalt/brostein.
-              </p>
+              <p>Pustende membran, god demping og siping for våt asfalt/brostein.</p>
               <p><a class="btn-link" href="#">Mer info</a></p>
             </article>
           </div>
@@ -169,29 +182,29 @@
             <h2 id="grep">Grep & sålemønster</h2>
             <div class="table-wrap">
               <table class="zebra">
-                <caption>
-                  Såle & grep (eksempel)
-                </caption>
+                <caption>Såle & grep (eksempel)</caption>
                 <thead>
                   <tr>
-                    <th>Underlag</th>
-                    <th>Anbefalt såle</th>
-                    <th>Tips</th>
+                    <!-- Kolonneoverskrifter -->
+                    <th scope="col">Underlag</th>
+                    <th scope="col">Anbefalt såle</th>
+                    <th scope="col">Tips</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Våt asfalt</td>
+                    <!-- Første celle identifiserer raden → scope="row" -->
+                    <th scope="row">Våt asfalt</th>
                     <td>Mykere gummi, dype spor</td>
                     <td>Kontroller slitasje jevnlig</td>
                   </tr>
                   <tr>
-                    <td>Brostein</td>
+                    <th scope="row">Brostein</th>
                     <td>Sipinger (fine riller)</td>
                     <td>Unngå helt slitte såler</td>
                   </tr>
                   <tr>
-                    <td>Blandet</td>
+                    <th scope="row">Blandet</th>
                     <td>Hybrid mønster</td>
                     <td>Avtakbar innersåle for tørk</td>
                   </tr>
@@ -227,19 +240,18 @@
           </div>
         </div>
       </section>
+
       <!-- Reklamefelt -->
       <section class="section" aria-labelledby="reklame">
         <div class="container">
           <aside class="card card--partners">
             <h2 id="reklame">Reklamefelt</h2>
-            <p>
-              Annonsør: <strong>DryFeet</strong> – «Hold føttene tørre hele
-              dagen».
-            </p>
+            <p>Annonsør: <strong>DryFeet</strong> – «Hold føttene tørre hele dagen».</p>
           </aside>
         </div>
       </section>
-      <p><a href="#top">↑ Til toppen</a></p>
+
+      <p><a href="#top" class="toplink">↑ Til toppen</a></p>
     </main>
 
     <footer class="site-footer">
@@ -247,5 +259,6 @@
         <p>© 2025 Regnbyen Bergen A/S – Prosjektoppgave DAT111/ING100</p>
       </div>
     </footer>
+    <script src="../js/vaer.js" defer></script>
   </body>
 </html>

@@ -10,50 +10,49 @@
       rel="stylesheet"
     />
   </head>
-  <div id="top"></div>
   <body class="transport">
+    <!-- Skip-lenke: gjør det mulig å hoppe forbi navigasjon -->
     <a class="skip-link" href="#main">Hopp til innhold</a>
+
+    <!-- Flytt #top inn i body for gyldig HTML -->
+    <div id="top"></div>
 
     <!-- HEADER / NAVBAR -->
     <header class="site-header">
       <div class="container nav-wrap">
         <a class="brand" href="hjemside.html">Regnbyen Bergen</a>
 
+        <!-- Semantisk nav; unngå listbox-roller i meny -->
         <nav class="navbar" aria-label="Hovedmeny">
           <ul class="menu">
             <li><a href="hjemside.html">Hjem</a></li>
             <li><a href="prosjekt.html">Om prosjektet</a></li>
-           
 
-            <!-- Løsninger -->
+            <!-- Tastaturvennlig meny via <details>/<summary> -->
             <li class="dropdown">
               <details>
-                <summary aria-haspopup="listbox">Løsninger</summary>
-                <ul class="submenu" role="listbox" aria-label="Løsninger">
+                <summary>
+                  Løsninger
+                  <span class="sr-only"> – åpne/lukke meny</span>
+                </summary>
+                <ul class="submenu" aria-label="Løsninger">
                   <li><a href="bil.html">Bil</a></li>
                   <li><a href="hus.html">Hus</a></li>
                   <li><a href="klaer.html">Klær</a></li>
                   <li><a href="sko.html">Sko</a></li>
                   <li><a href="vaer-daglig.html">Vær (daglig)</a></li>
                   <li><a href="regn-aktiviteter.html">Aktiviteter</a></li>
-                  <li>
-                    <a href="transport-sikkerhet.html" aria-current="page"
-                      >Transport & sikkerhet</a
-                    >
-                  </li>
+                  <li><a href="transport-sikkerhet.html" aria-current="page">Transport &amp; sikkerhet</a></li>
 
-                  <!-- For bedrifter -->
+                  <!-- Nestet undermeny: For bedrifter -->
                   <li class="dropdown">
                     <details>
-                      <summary aria-haspopup="listbox">For bedrifter</summary>
-                      <ul
-                        class="submenu"
-                        role="listbox"
-                        aria-label="For bedrifter"
-                      >
-                        <li>
-                          <a href="for-bedrifter-produkter.html">Produkter</a>
-                        </li>
+                      <summary>
+                        For bedrifter
+                        <span class="sr-only"> – åpne/lukke undermeny</span>
+                      </summary>
+                      <ul class="submenu" aria-label="For bedrifter">
+                        <li><a href="for-bedrifter-produkter.html">Produkter</a></li>
                         <li><a href="annonsering.html">Annonsering</a></li>
                       </ul>
                     </details>
@@ -61,49 +60,91 @@
                 </ul>
               </details>
             </li>
-             <li><a href="kontakt.html">Kontakt</a></li>
+
+            <li><a href="kontakt.html">Kontakt</a></li>
           </ul>
         </nav>
 
-        <form class="nav-search" role="search" action="#" aria-label="Søk">
-          <label for="q" class="sr-only">Søk</label>
-          <input id="q" name="q" type="search" placeholder="Søk..." />
-        </form>
+        <!-- Verktøylinje: søk og vær -->
+
+        <div class="toolrow">
+          <form class="nav-search" role="search" aria-label="Søk">
+            <label for="q" class="sr-only">Søk</label>
+            <input id="q" name="q" type="search" placeholder="Søk..." />
+          </form>
+
+          <div class="wx-mini-wrap">
+            <button
+              id="wx-mini"
+              class="wx-mini"
+              aria-expanded="false"
+              aria-controls="wx-popover"
+            >
+              <span class="wx-loc">📍 Bergen</span>
+              <span id="wx-mini-icon" aria-hidden="true">⛅</span>
+              <span id="wx-mini-temp">--°C</span>
+              <span class="sr-only">Åpne værdetaljer</span>
+            </button>
+            <div
+              id="wx-popover"
+              class="wx-popover"
+              role="dialog"
+              aria-label="Vær i Bergen"
+              hidden
+            >
+              <div class="wx-card">
+                <div class="wx-row">
+                  <div id="wx-icon" class="wx-icon" aria-hidden="true">⛅</div>
+                  <div class="wx-main">
+                    <div id="nowcast-status" class="wx-temp">Laster…</div>
+                    <div id="wx-desc" class="wx-desc">—</div>
+                  </div>
+                </div>
+                <ul id="nowcast-list" class="wx-tags"></ul>
+                <small id="nowcast-source" class="muted"></small>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
 
-    <!-- HERO (başlık + iki görsel) -->
+    <!-- HERO (tittel + to bilder) -->
     <section class="section" aria-labelledby="hero-title">
       <div class="container">
-        <h1 id="hero-title">Transport i regnvær & sikkerhet</h1>
-        <p>
-          Korte råd for tryggere reiser med buss, Bybanen og til fots i
-          Bergensregnet.
-        </p>
+        <h1 id="hero-title">Transport i regnvær &amp; sikkerhet</h1>
+        <p>Korte råd for tryggere reiser med buss, Bybanen og til fots i Bergensregnet.</p>
 
+        <!-- role=group er ok her for å samle relaterte figurer -->
         <div class="grid two" role="group" aria-label="Bybanen og buss i regn">
           <figure class="card">
             <span class="badge">Bybanen</span>
             <img
               src="../img/trans1.jpeg"
               alt="Bybanen på en regnfull dag i Bergen"
+              loading="lazy"
             />
             <figcaption class="sr-only">Bybanen i regn</figcaption>
           </figure>
           <figure class="card">
             <span class="badge" style="background: #14b8a6">Buss</span>
-            <img src="../img/trans2.jpg" alt="Bybuss ved plattform i regnvær" />
+            <img
+              src="../img/trans2.jpg"
+              alt="Bybuss ved plattform i regnvær"
+              loading="lazy"
+            />
             <figcaption class="sr-only">Bybuss i regn</figcaption>
           </figure>
         </div>
       </div>
     </section>
 
-    <main id="main">
+    <!-- MAIN: fokusmål for skip-lenken -->
+    <main id="main" tabindex="-1">
       <!-- Kollektiv -->
       <section class="section" id="kollektiv" aria-labelledby="kollektiv-title">
         <div class="container">
-          <h2 id="kollektiv-title">Kollektiv: buss & Bybanen</h2>
+          <h2 id="kollektiv-title">Kollektiv: buss &amp; Bybanen</h2>
           <div class="grid two">
             <article class="card">
               <h3>Før avreise</h3>
@@ -128,8 +169,8 @@
       <!-- Fotgjenger & sykkel -->
       <section class="section" id="fot" aria-labelledby="fot-title">
         <div class="container">
-          <h2 id="fot-title">Fotgjenger & sykkel</h2>
-          <div class="grid two">
+          <h2 id="fot-title">Fotgjenger &amp; sykkel</h2>
+        <div class="grid two">
             <article class="card">
               <h3>Fotgjengere</h3>
               <ul>
@@ -151,56 +192,52 @@
       </section>
 
       <!-- Sikkerhetssjekk -->
-      <section class="section" id="sjekk">
+      <section class="section" id="sjekk" aria-labelledby="sikkerhetstittel">
         <div class="container">
           <div class="section-box section--teal">
-            <h2>Sikkerhetssjekk (kort liste)</h2>
+            <h2 id="sikkerhetstittel">Sikkerhetssjekk (kort liste)</h2>
             <ul>
               <li>Skli-sikre sko (se <a href="sko.html">Sko</a>)</li>
               <li>Vanntett deksel/pose for mobil og kort</li>
-              <li>Refleks & liten lommelykt ved dårlig sikt</li>
+              <li>Refleks &amp; liten lommelykt ved dårlig sikt</li>
             </ul>
           </div>
         </div>
       </section>
 
       <!-- Driftsinfo -->
-      <section
-        class="section"
-        id="driftsinfo"
-        aria-labelledby="driftsinfo-title"
-      >
+      <section class="section" id="driftsinfo" aria-labelledby="driftsinfo-title">
         <div class="container">
           <div class="section-box section--blue">
             <h2 id="driftsinfo-title">Driftsinfo (eksempel-tabell)</h2>
             <div class="table-wrap">
               <table class="zebra table--left-accent">
-                <caption>
-                  Mulige endringer i regn (eksempel)
-                </caption>
+                <caption>Mulige endringer i regn (eksempel)</caption>
                 <thead>
                   <tr>
-                    <th>Linje</th>
-                    <th>Type</th>
-                    <th>Status</th>
-                    <th>Notat</th>
+                    <!-- Kolonneoverskrifter -->
+                    <th scope="col">Linje</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Notat</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Bybanen</td>
+                    <!-- Første celle identifiserer raden → scope="row" -->
+                    <th scope="row">Bybanen</th>
                     <td>Skinne</td>
                     <td>Normal</td>
                     <td>Glatt plattform – hold deg fast</td>
                   </tr>
                   <tr>
-                    <td>Buss 12</td>
+                    <th scope="row">Buss 12</th>
                     <td>Buss</td>
                     <td>Forsinket</td>
                     <td>Tung trafikk i rushtid + regn</td>
                   </tr>
                   <tr>
-                    <td>Buss 50E</td>
+                    <th scope="row">Buss 50E</th>
                     <td>Buss</td>
                     <td>Omvei</td>
                     <td>Vann i tunnel – midlertidig rute</td>
@@ -213,9 +250,8 @@
         </div>
       </section>
 
-  
-          <p><a href="#top">↑ Til toppen</a></p>
-        
+      <!-- Til toppen-lenke med tydelig mål -->
+      <p><a class="toplink" href="#top">↑ Til toppen</a></p>
     </main>
 
     <footer class="site-footer">
@@ -223,5 +259,6 @@
         <p>© 2025 Regnbyen Bergen A/S – Prosjektoppgave DAT111/ING100</p>
       </div>
     </footer>
+    <script src="../js/vaer.js" defer></script>
   </body>
 </html>

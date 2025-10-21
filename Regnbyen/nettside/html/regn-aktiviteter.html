@@ -6,57 +6,53 @@
     <title>Regnbyen Bergen A/S – Aktiviteter i regn</title>
 
     <link rel="stylesheet" href="../css/style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=UnifrakturMaguntia&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
   </head>
-  <body class="aktiviteler aktiviteter">
+  <!-- Behold kun norsk klasse for konsistens -->
+  <body class="aktiviteter">
+    <!-- Skip-lenke: gjør det mulig å hoppe forbi navigasjon med tastatur -->
     <a class="skip-link" href="#main">Hopp til innhold</a>
 
-    <!-- HEADER / NAVBAR -->
     <div id="top"></div>
+
+    <!-- HEADER / NAVBAR -->
     <header class="site-header">
       <div class="container nav-wrap">
         <a class="brand" href="hjemside.html">Regnbyen Bergen</a>
 
+        <!-- Semantisk nav; unngå listbox-roller i meny -->
         <nav class="navbar" aria-label="Hovedmeny">
           <ul class="menu">
             <li><a href="hjemside.html">Hjem</a></li>
             <li><a href="prosjekt.html">Om prosjektet</a></li>
-           
 
-            <!-- Løsninger -->
+            <!-- Tastaturvennlig meny via <details>/<summary> -->
             <li class="dropdown">
               <details>
-                <summary aria-haspopup="listbox">Løsninger</summary>
-                <ul class="submenu" role="listbox" aria-label="Løsninger">
+                <summary>
+                  Løsninger
+                  <span class="sr-only"> – åpne/lukke meny</span>
+                </summary>
+                <ul class="submenu" aria-label="Løsninger">
                   <li><a href="bil.html">Bil</a></li>
                   <li><a href="hus.html">Hus</a></li>
                   <li><a href="klaer.html">Klær</a></li>
                   <li><a href="sko.html">Sko</a></li>
                   <li><a href="vaer-daglig.html">Vær (daglig)</a></li>
-                  <li><a href="regn-aktiviteter.html">Aktiviteter</a></li>
-                  <li>
-                    <a href="transport-sikkerhet.html"> transport-sikkerhet</a>
-                  </li>
+                  <!-- Merk aktiv underside med aria-current -->
+                  <li><a href="regn-aktiviteter.html" aria-current="page">Aktiviteter</a></li>
+                  <li><a href="transport-sikkerhet.html">Transport-sikkerhet</a></li>
 
-                  <!-- For bedrifter (nested under Løsninger) -->
+                  <!-- Nestet undermeny: For bedrifter -->
                   <li class="dropdown">
                     <details>
-                      <summary aria-haspopup="listbox">For bedrifter</summary>
-                      <ul
-                        class="submenu"
-                        role="listbox"
-                        aria-label="For bedrifter"
-                      >
-                        <li>
-                          <a href="for-bedrifter-produkter.html">Produkter</a>
-                        </li>
+                      <summary>
+                        For bedrifter
+                        <span class="sr-only"> – åpne/lukke undermeny</span>
+                      </summary>
+                      <ul class="submenu" aria-label="For bedrifter">
+                        <li><a href="for-bedrifter-produkter.html">Produkter</a></li>
                         <li><a href="annonsering.html">Annonsering</a></li>
                       </ul>
                     </details>
@@ -64,37 +60,72 @@
                 </ul>
               </details>
             </li>
-             <li><a href="kontakt.html">Kontakt</a></li>
+
+            <li><a href="kontakt.html">Kontakt</a></li>
           </ul>
         </nav>
+ <!-- Verktøylinje: søk og vær -->
 
-        <form class="nav-search" role="search" action="#" aria-label="Søk">
-          <label for="q" class="sr-only">Søk</label>
-          <input id="q" name="q" type="search" placeholder="Søk..." />
-        </form>
+        <div class="toolrow">
+          <form class="nav-search" role="search" aria-label="Søk">
+            <label for="q" class="sr-only">Søk</label>
+            <input id="q" name="q" type="search" placeholder="Søk..." />
+          </form>
+
+          <div class="wx-mini-wrap">
+            <button
+              id="wx-mini"
+              class="wx-mini"
+              aria-expanded="false"
+              aria-controls="wx-popover"
+            >
+              <span class="wx-loc">📍 Bergen</span>
+              <span id="wx-mini-icon" aria-hidden="true">⛅</span>
+              <span id="wx-mini-temp">--°C</span>
+              <span class="sr-only">Åpne værdetaljer</span>
+            </button>
+            <div
+              id="wx-popover"
+              class="wx-popover"
+              role="dialog"
+              aria-label="Vær i Bergen"
+              hidden
+            >
+              <div class="wx-card">
+                <div class="wx-row">
+                  <div id="wx-icon" class="wx-icon" aria-hidden="true">⛅</div>
+                  <div class="wx-main">
+                    <div id="nowcast-status" class="wx-temp">Laster…</div>
+                    <div id="wx-desc" class="wx-desc">—</div>
+                  </div>
+                </div>
+                <ul id="nowcast-list" class="wx-tags"></ul>
+                <small id="nowcast-source" class="muted"></small>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
 
-    <main id="main">
+    <!-- MAIN: fokusmål for skip-lenken -->
+    <main id="main" tabindex="-1">
       <!-- Intro -->
       <section class="section" aria-labelledby="page-title">
         <div class="container">
           <h1 id="page-title">Innendørs & regnværsvennlige aktiviteter</h1>
-          <p>
-            Her er forslag til ting du kan gjøre på en regnfull dag – for både
-            turister og beboere.
-          </p>
+          <p>Her er forslag til ting du kan gjøre på en regnfull dag – for både turister og beboere.</p>
         </div>
       </section>
 
-      <!-- Kategoriler -->
+      <!-- Kategorier -->
       <section class="section" aria-labelledby="kategorier">
         <div class="container">
           <h2 id="kategorier">Kategorier</h2>
           <div class="cards grid-3">
             <article class="card card--ls" style="--ls-color: #2563eb">
               <h3>Museer</h3>
-              <p>Kode, Akvariet, Bryggens Museum – perfekt for våte dager.</p>
+              <p>KODE, Akvariet, Bryggens Museum – perfekt for våte dager.</p>
             </article>
             <article class="card card--ls" style="--ls-color: #7c3aed">
               <h3>Kafeer</h3>
@@ -113,11 +144,7 @@
         <div class="container">
           <h2 id="temaforslag">Flere forslag</h2>
           <div class="cards grid-3">
-            <article
-              class="card card--ls"
-              style="--ls-color: #2563eb"
-              aria-labelledby="barn-tittel"
-            >
+            <article class="card card--ls" style="--ls-color: #2563eb" aria-labelledby="barn-tittel">
               <h3 id="barn-tittel">For barn</h3>
               <ul>
                 <li>Akvariet – fôringsshow og innendørs soner</li>
@@ -126,11 +153,7 @@
               </ul>
             </article>
 
-            <article
-              class="card card--ls"
-              style="--ls-color: #7c3aed"
-              aria-labelledby="date-tittel"
-            >
+            <article class="card card--ls" style="--ls-color: #7c3aed" aria-labelledby="date-tittel">
               <h3 id="date-tittel">Date night</h3>
               <ul>
                 <li>Gallerirunde på KODE + dessertkafé</li>
@@ -139,11 +162,7 @@
               </ul>
             </article>
 
-            <article
-              class="card card--ls"
-              style="--ls-color: #f59e0b"
-              aria-labelledby="gratis-tittel"
-            >
+            <article class="card card--ls" style="--ls-color: #f59e0b" aria-labelledby="gratis-tittel">
               <h3 id="gratis-tittel">Gratis / lavbudsjett</h3>
               <ul>
                 <li>Bybanen til endestasjon + kort byvandring</li>
@@ -162,32 +181,32 @@
             <h2 id="apningstider">Åpningstider (utvalg)</h2>
             <div class="table-wrap">
               <table class="zebra">
-                <caption>
-                  Forslag til steder og tider (eksempel)
-                </caption>
+                <caption>Forslag til steder og tider (eksempel)</caption>
                 <thead>
                   <tr>
-                    <th>Sted</th>
-                    <th>Type</th>
-                    <th>Hverdager</th>
-                    <th>Helg</th>
+                    <!-- Kolonneoverskrifter -->
+                    <th scope="col">Sted</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Hverdager</th>
+                    <th scope="col">Helg</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>KODE</td>
+                    <!-- Første celle identifiserer raden → scope="row" -->
+                    <th scope="row">KODE</th>
                     <td>Museum</td>
                     <td>11–17</td>
                     <td>11–17</td>
                   </tr>
                   <tr>
-                    <td>Akvariet</td>
+                    <th scope="row">Akvariet</th>
                     <td>Attraksjon</td>
                     <td>10–18</td>
                     <td>10–18</td>
                   </tr>
                   <tr>
-                    <td>Biblioteket</td>
+                    <th scope="row">Biblioteket</th>
                     <td>Kultur</td>
                     <td>10–19</td>
                     <td>10–16</td>
@@ -195,6 +214,8 @@
                 </tbody>
               </table>
             </div>
+            <!-- Valgfritt: liten hjelpetekst om at tider kan variere -->
+            <p class="muted">Obs: Åpningstider kan endre seg ved høytid/arrangementer.</p>
           </div>
         </div>
       </section>
@@ -204,7 +225,7 @@
         <div class="container">
           <h2 id="ruter">Foreslåtte ruter</h2>
           <article class="card card--ls" style="--ls-color: #14b8a6">
-            <h3>“3-timers regnbytur”</h3>
+            <h3>«3-timers regnbytur»</h3>
             <ol>
               <li>Kort byvandring på Bryggen (med regnjakke!)</li>
               <li>Inn på KODE for utstillinger</li>
@@ -213,8 +234,8 @@
           </article>
         </div>
       </section>
-      <!-- Reklamfelt -->
 
+      <!-- Reklamefelt -->
       <section class="section" aria-labelledby="reklame">
         <div class="container">
           <aside class="card card--partners">
@@ -223,7 +244,8 @@
           </aside>
         </div>
       </section>
-      <p><a href="#top">↑ Til toppen</a></p>
+
+      <p><a class="toplink" href="#top">↑ Til toppen</a></p>
     </main>
 
     <footer class="site-footer">
@@ -231,5 +253,6 @@
         <p>© 2025 Regnbyen Bergen A/S – Prosjektoppgave DAT111/ING100</p>
       </div>
     </footer>
+    <script src="../js/vaer.js" defer></script>
   </body>
 </html>
