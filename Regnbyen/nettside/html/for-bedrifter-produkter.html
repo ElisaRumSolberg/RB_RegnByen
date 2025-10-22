@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Regnbyen Bergen A/S – For bedrifter</title>
+
+  <!-- Stilark -->
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <!-- Fonter -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bedrifter">
+  <!-- Universell utforming: skip-lenke til hovedinnhold -->
+  <a class="skip-link" href="#main">Hopp til innhold</a>
+
+  <!-- HEADER / NAVBAR -->
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <!-- Nettstedsmerke / lenke til hjem -->
+      <a class="brand" href="hjemside.html">Regnbyen Bergen</a>
+
+      <!-- Hovedmeny: semantikk først; ARIA kun ved behov -->
+      <nav class="navbar" aria-label="Hovedmeny">
+        <ul class="menu">
+          <li><a href="hjemside.html">Hjem</a></li>
+          <li><a href="prosjekt.html">Om prosjektet</a></li>
+
+          <!-- Tastaturvennlig nedtrekk via <details>/<summary> -->
+          <li class="dropdown">
+            <details>
+              <!-- Legg til skjermleser-tekst for å tydeliggjøre formålet -->
+              <summary>
+                Løsninger
+                <span class="sr-only"> – åpne/lukke meny</span>
+              </summary>
+              <ul class="submenu" aria-label="Løsninger">
+                <li><a href="bil.html">Bil</a></li>
+                <li><a href="hus.html">Hus</a></li>
+                <li><a href="klaer.html">Klær</a></li>
+                <li><a href="sko.html">Sko</a></li>
+                <li><a href="vaer-daglig.html">Vær (daglig)</a></li>
+                <li><a href="regn-aktiviteter.html">Aktiviteter</a></li>
+                <li><a href="transport-sikkerhet.html">Transport &amp; sikkerhet</a></li>
+
+                <!-- Undermeny for bedrifter -->
+                <li class="dropdown">
+                  <details>
+                    <summary>
+                      For bedrifter
+                      <span class="sr-only"> – åpne/lukke undermeny</span>
+                    </summary>
+                    <ul class="submenu" aria-label="For bedrifter">
+                      <!-- Merk gjeldende underside med aria-current -->
+                      <li><a href="for-bedrifter-produkter.html" aria-current="page">Produkter</a></li>
+                      <li><a href="annonsering.html">Annonsering</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </details>
+          </li>
+
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+ <!-- Verktøylinje: søk og vær -->
+
+        <div class="toolrow">
+          <form class="nav-search" role="search" aria-label="Søk">
+            <label for="q" class="sr-only">Søk</label>
+            <input id="q" name="q" type="search" placeholder="Søk..." />
+          </form>
+
+          <div class="wx-mini-wrap">
+            <button
+              id="wx-mini"
+              class="wx-mini"
+              aria-expanded="false"
+              aria-controls="wx-popover"
+            >
+              <span class="wx-loc">📍 Bergen</span>
+              <span id="wx-mini-icon" aria-hidden="true">⛅</span>
+              <span id="wx-mini-temp">--°C</span>
+              <span class="sr-only">Åpne værdetaljer</span>
+            </button>
+            <div
+              id="wx-popover"
+              class="wx-popover"
+              role="dialog"
+              aria-label="Vær i Bergen"
+              hidden
+            >
+              <div class="wx-card">
+                <div class="wx-row">
+                  <div id="wx-icon" class="wx-icon" aria-hidden="true">⛅</div>
+                  <div class="wx-main">
+                    <div id="nowcast-status" class="wx-temp">Laster…</div>
+                    <div id="wx-desc" class="wx-desc">—</div>
+                  </div>
+                </div>
+                <ul id="nowcast-list" class="wx-tags"></ul>
+                <small id="nowcast-source" class="muted"></small>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </header>
+
+  <!-- HOVEDINNHOLD: gjør fokusérbar som mål for skip-lenken -->
+  <main id="main" tabindex="-1">
+    <!-- Intro -->
+    <section class="section" aria-labelledby="page-title">
+      <div class="container">
+        <!-- Én H1 per side er riktig -->
+        <h1 id="page-title">Produkttips for regnbyen</h1>
+        <p>Hva lønner seg å selge i regnfulle perioder? Under er et kort utvalg.</p>
+      </div>
+    </section>
+
+    <!-- Kategorier & eksempler -->
+    <section class="section" aria-labelledby="kategori">
+      <div class="container">
+        <h2 id="kategori">Kategorier &amp; eksempler</h2>
+
+        <div class="grid two">
+          <!-- Kategori 1: Regnklær -->
+          <div class="section-box section--purple">
+            <div class="category" aria-labelledby="k1">
+              <h3 id="k1">Regnklær &amp; tilbehør</h3>
+              <ul>
+                <li>Skalljakker, regnbukser</li>
+                <li>Paraplyer, vanntette sekker</li>
+                <li>Refleksdetaljer, regntrekk</li>
+              </ul>
+
+              <!-- Produktkort (eksempler) -->
+              <div class="grid two product-grid" style="margin-top:16px">
+                <article class="card" aria-labelledby="p-k1a">
+                  <figure>
+                    <!-- legg til width/height om du kjenner dimensjoner -->
+                    <img src="../img/forbedprodu1.jpg"
+                         alt="Skalljakke for regnbyger (illustrasjon)"
+                         loading="lazy" />
+                    <!-- <figcaption>Valgfritt: kort beskrivelse</figcaption> -->
+                  </figure>
+                  <h4 id="p-k1a">Skalljakke Pro</h4>
+                  <p>Høy vannsøyle, pusteevne og tapede sømmer.</p>
+                  <p class="mt-auto"><a class="btn-link" href="#">Mer info</a></p>
+                </article>
+
+                <article class="card" aria-labelledby="p-k1b">
+                  <figure>
+                    <img src="../img/forbedprodu2.jpg"
+                         alt="Vanntett sekk – 20L (illustrasjon)"
+                         loading="lazy" />
+                  </figure>
+                  <h4 id="p-k1b">Vanntett sekk 20L</h4>
+                  <p>Rulltopp, reflekser og regntrekk i lokk.</p>
+                  <p class="mt-auto"><a class="btn-link" href="#">Mer info</a></p>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kategori 2: Butikk-tilpasning -->
+          <div class="section-box section--blue">
+            <div class="category" aria-labelledby="k2">
+              <h3 id="k2">Butikk-tilpasning</h3>
+              <ul>
+                <li>Vitrineløsninger i «regn-tema»</li>
+                <li>Plakat &amp; kampanjeplassering ved inngang</li>
+                <li>Sesongbasert lagerplan (høst/vår)</li>
+              </ul>
+
+              <div class="grid two product-grid" style="margin-top:16px">
+                <article class="card" aria-labelledby="p-k2a">
+                  <figure>
+                    <img src="../img/forbedprodu3.jpg"
+                         alt="Vitrine-sett – regntema (illustrasjon)"
+                         loading="lazy" />
+                  </figure>
+                  <h4 id="p-k2a">Vitrine-sett (regn)</h4>
+                  <p>Modulbasert, rask montering og tydelig sesongtema.</p>
+                  <p class="mt-auto"><a class="btn-link" href="#">Mer info</a></p>
+                </article>
+
+                <article class="card" aria-labelledby="p-k2b">
+                  <figure>
+                    <img src="../img/forbedprodu4.avif"
+                         alt="Plakatpakke – kampanje (illustrasjon)"
+                         loading="lazy" />
+                  </figure>
+                  <h4 id="p-k2b">Plakatpakke</h4>
+                  <p>Sett for inngang, kasse og hylletopper.</p>
+                  <p class="mt-auto"><a class="btn-link" href="#">Mer info</a></p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /grid -->
+      </div>
+    </section>
+
+    <!-- Sesongplan-tabell -->
+    <section class="section" aria-labelledby="sesong">
+      <div class="container">
+        <div class="section-box section--amber">
+          <h2 id="sesong">Sesongplan (eksempel)</h2>
+
+          <!-- Tabellinnpakning gir horisontal scrolling på små skjermer -->
+          <div class="table-wrap">
+            <table class="zebra table">
+              <caption>Sesong &amp; fokus</caption>
+              <thead>
+                <tr>
+                  <!-- Kolonneoverskrifter -->
+                  <th scope="col">Sesong</th>
+                  <th scope="col">Fokus</th>
+                  <th scope="col">Kommentar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <!-- Radoverskrift med scope="row" gir bedre navigasjon -->
+                  <th scope="row">Vår</th>
+                  <td>Lette skalljakker</td>
+                  <td>Vind/regn-kombinasjon</td>
+                </tr>
+                <tr>
+                  <th scope="row">Høst</th>
+                  <td>Støvler, paraply</td>
+                  <td>Hyppige byger</td>
+                </tr>
+                <tr>
+                  <th scope="row">Vinter</th>
+                  <td>Vannavvisning</td>
+                  <td>Slaps &amp; salt</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /table-wrap -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Til toppen-lenke -->
+    <section class="section">
+      <div class="container">
+        <p><a href="#top" class="toplink">↑ Til toppen</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 Regnbyen Bergen A/S – Prosjektoppgave DAT111/ING100</p>
+    </div>
+  </footer>
+  <script src="../js/vaer.js" defer></script>
+</body>
+</html>

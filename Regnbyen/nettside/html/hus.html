@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Regnbyen Bergen A/S – Hus</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <!-- Fonter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=UnifrakturMaguntia&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="hus">
+    <!-- Skip-lenke: sender fokus til main -->
+    <a class="skip-link" href="#main">Hopp til innhold</a>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="site-header" id="top">
+      <div class="container nav-wrap">
+        <a class="brand" href="hjemside.html">Regnbyen Bergen</a>
+
+        <!-- Semantisk nav uten overflødig ARIA -->
+        <nav class="navbar" aria-label="Hovedmeny">
+          <ul class="menu">
+            <li><a href="hjemside.html">Hjem</a></li>
+            <li><a href="prosjekt.html">Om prosjektet</a></li>
+
+            <!-- Tastaturvennlig meny med <details>/<summary> -->
+            <li class="dropdown">
+              <details>
+                <!-- Unngå aria-haspopup=listbox; legg til skjermleser-tekst -->
+                <summary>
+                  Løsninger
+                  <span class="sr-only"> – åpne/lukke meny</span>
+                </summary>
+                <!-- Ikke bruk role=listbox for navigasjon -->
+                <ul class="submenu" aria-label="Løsninger">
+                  <li><a href="bil.html">Bil</a></li>
+                  <li><a href="hus.html" aria-current="page">Hus</a></li>
+                  <li><a href="klaer.html">Klær</a></li>
+                  <li><a href="sko.html">Sko</a></li>
+                  <li><a href="vaer-daglig.html">Vær (daglig)</a></li>
+                  <li><a href="regn-aktiviteter.html">Aktiviteter</a></li>
+                  <li><a href="transport-sikkerhet.html">Transport &amp; sikkerhet</a></li>
+
+                  <!-- For bedrifter (nestet undermeny) -->
+                  <li class="dropdown">
+                    <details>
+                      <summary>
+                        For bedrifter
+                        <span class="sr-only"> – åpne/lukke undermeny</span>
+                      </summary>
+                      <ul class="submenu" aria-label="For bedrifter">
+                        <li><a href="for-bedrifter-produkter.html">Produkter</a></li>
+                        <li><a href="annonsering.html">Annonsering</a></li>
+                      </ul>
+                    </details>
+                  </li>
+                </ul>
+              </details>
+            </li>
+
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </nav>
+
+       <!-- Verktøylinje: søk og vær -->
+
+        <div class="toolrow">
+          <form class="nav-search" role="search" aria-label="Søk">
+            <label for="q" class="sr-only">Søk</label>
+            <input id="q" name="q" type="search" placeholder="Søk..." />
+          </form>
+
+          <div class="wx-mini-wrap">
+            <button
+              id="wx-mini"
+              class="wx-mini"
+              aria-expanded="false"
+              aria-controls="wx-popover"
+            >
+              <span class="wx-loc">📍 Bergen</span>
+              <span id="wx-mini-icon" aria-hidden="true">⛅</span>
+              <span id="wx-mini-temp">--°C</span>
+              <span class="sr-only">Åpne værdetaljer</span>
+            </button>
+            <div
+              id="wx-popover"
+              class="wx-popover"
+              role="dialog"
+              aria-label="Vær i Bergen"
+              hidden
+            >
+              <div class="wx-card">
+                <div class="wx-row">
+                  <div id="wx-icon" class="wx-icon" aria-hidden="true">⛅</div>
+                  <div class="wx-main">
+                    <div id="nowcast-status" class="wx-temp">Laster…</div>
+                    <div id="wx-desc" class="wx-desc">—</div>
+                  </div>
+                </div>
+                <ul id="nowcast-list" class="wx-tags"></ul>
+                <small id="nowcast-source" class="muted"></small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section
+      class="hero section"
+      style="--hero-image: url('../img/hus.jpg')"
+      aria-labelledby="hero-title"
+    >
+      <div class="container">
+        <h1 id="hero-title" class="hero-title">Vedlikehold av hus i regnvær</h1>
+      </div>
+    </section>
+
+    <!-- Main er fokusmål for skip-lenken -->
+    <main id="main" tabindex="-1">
+      <section class="section" aria-labelledby="intro">
+        <div class="container">
+          <!-- Skjult h2 for struktur; synlig tekst følger etter -->
+          <h2 id="intro" class="sr-only">Introduksjon</h2>
+          <p>
+            I et vått og kystnært klima som Bergen er det lurt å prioritere
+            drenering, takrenner, riktig maling og god ventilasjon. Under finner
+            du en kort oversikt med konkrete anbefalinger.
+          </p>
+        </div>
+      </section>
+
+      <!-- Anbefalinger (tabell) -->
+      <section class="section" aria-labelledby="anbefalinger">
+        <div class="container">
+          <div class="section-box section--amber">
+            <h2 id="anbefalinger">Anbefalinger (tabell)</h2>
+            <!-- Wrapper gir horisontal rulling på små skjermer -->
+            <div class="table-wrap">
+              <table class="zebra">
+                <caption>Hus &amp; regnvær – hva bør du prioritere?</caption>
+                <thead>
+                  <tr>
+                    <!-- Bruk scope=col for kolonneoverskrifter -->
+                    <th scope="col">Tema</th>
+                    <th scope="col">Anbefaling</th>
+                    <th scope="col">Hvorfor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <!-- scope=row for radoverskrift om første celle identifiserer raden -->
+                    <th scope="row">Takrenner &amp; nedløp</th>
+                    <td>Rens høst/vår; sjekk lekkasjer og fester</td>
+                    <td>Hindrer overløp og vannskader på fasade</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Drenering/terrengfall</th>
+                    <td>Sørg for fall bort fra grunnmur; hold sluk åpne</td>
+                    <td>Reduserer fuktinntrenging i kjeller/krypkjeller</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Yttervegger/maling</th>
+                    <td>Bruk diffusjonsåpen maling til vått klima</td>
+                    <td>Veggen «puster» og tørker raskere</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Ventilasjon/lufting</th>
+                    <td>Luft daglig; bruk avtrekk på bad/kjøkken</td>
+                    <td>Motvirker kondens og mugg</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Vinduer &amp; dører</th>
+                    <td>Kontroller tetningslister; skift ved slitasje</td>
+                    <td>Bedre tetthet og mindre fukt/trekk</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Kjeller/krypkjeller</th>
+                    <td>Mål fukt; bruk avfukter ved behov</td>
+                    <td>Reduserer lukt og muggvekst</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Anbefalte produkter -->
+      <section class="section" aria-labelledby="produkter">
+        <div class="container">
+          <h2 id="produkter">Anbefalte produkter</h2>
+
+          <div id="produkterhus" class="cards grid-3">
+            <article class="card feature card--hus" aria-labelledby="p1-tittel">
+              <figure>
+                <img
+                  src="../img/husprod1.jpg"
+                  alt="Takrennerens-sett (illustrasjon)"
+                  loading="lazy"
+                />
+                <figcaption class="sr-only">Takrennerens-sett</figcaption>
+              </figure>
+              <h3 id="p1-tittel">Takrennerens-sett</h3>
+              <p>Effektiv rensing og lekkasjekontroll for renner/nedløp.</p>
+              <p><a class="btn-link" href="#">Mer info</a></p>
+            </article>
+
+            <article class="card feature card--hus" aria-labelledby="p2-tittel">
+              <figure>
+                <img
+                  src="../img/husprod2.png"
+                  alt="Diffusjonsåpen fasademaling (illustrasjon)"
+                  loading="lazy"
+                />
+                <figcaption class="sr-only">Diffusjonsåpen fasademaling</figcaption>
+              </figure>
+              <h3 id="p2-tittel">Fasademaling (diffusjonsåpen)</h3>
+              <p>Tørker raskt, lar veggen puste – egnet for vått klima.</p>
+              <p><a class="btn-link" href="#">Mer info</a></p>
+            </article>
+
+            <article class="card feature card--hus" aria-labelledby="p3-tittel">
+              <figure>
+                <img
+                  src="../img/husprod3.avif"
+                  alt="Avfukter – kjeller (illustrasjon)"
+                  loading="lazy"
+                />
+                <figcaption class="sr-only">Avfukter for kjeller</figcaption>
+              </figure>
+              <h3 id="p3-tittel">Avfukter (kjeller)</h3>
+              <p>Stabil fuktstyring for kjeller/krypkjeller.</p>
+              <p><a class="btn-link" href="#">Mer info</a></p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sjekklister -->
+      <section class="section" aria-labelledby="sjekkliste">
+        <div class="container">
+          <div class="section-box section--amber">
+            <h2 id="sjekkliste">Sesongvise sjekklister</h2>
+            <ul>
+              <li><strong>Vår:</strong> Rens takrenner, sjekk nedløp og drenering.</li>
+              <li><strong>Sommer:</strong> Mal/vedlikehold yttervegger ved tørt vær.</li>
+              <li><strong>Høst:</strong> Fjern løv fra rister/sluk; kontroller tetningslister.</li>
+              <li><strong>Vinter:</strong> Følg med på istapper/ising; luft godt etter dusj.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sikkerhet -->
+      <section class="section" aria-labelledby="sikkerhet">
+        <div class="container">
+          <div class="section-box section--purple">
+            <h2 id="sikkerhet">Sikkerhet</h2>
+            <ul>
+              <li>Bruk fallsikring ved arbeid i høyden (tak/renner).</li>
+              <li>Slå av strømmen før arbeid i våtrom.</li>
+              <li>Følg produsentens anvisninger for kjemikalier og maling.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Reklamefelt -->
+      <section class="section" aria-labelledby="reklame">
+        <div class="container">
+          <aside class="card card--partners">
+            <h2 id="reklame">Reklamefelt</h2>
+            <p>Annonsør: <strong>DryHome</strong> – «Beskytt huset mot fukt og sopp».</p>
+          </aside>
+        </div>
+      </section>
+
+      <p><a href="#top" class="toplink">↑ Til toppen</a></p>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2025 Regnbyen Bergen A/S – Prosjektoppgave DAT111/ING100</p>
+      </div>
+    </footer>
+    <script src="../js/vaer.js" defer></script>
+  </body>
+</html>

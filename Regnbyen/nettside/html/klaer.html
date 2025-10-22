@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Regnbyen Bergen A/S – Klær</title>
+
+    <!-- Stiler -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  </head>
+
+  <body class="klaer">
+    <!-- Skip-lenke: sender fokus direkte til main -->
+    <a class="skip-link" href="#main">Hopp til innhold</a>
+
+    <div id="top"></div>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="hjemside.html">Regnbyen Bergen</a>
+
+        <!-- Semantisk nav; unngå listbox-roller i navigasjon -->
+        <nav class="navbar" aria-label="Hovedmeny">
+          <ul class="menu">
+            <li><a href="hjemside.html">Hjem</a></li>
+            <li><a href="prosjekt.html">Om prosjektet</a></li>
+
+            <!-- Tastaturvennlig meny via <details>/<summary> -->
+            <li class="dropdown">
+              <details>
+                <summary>
+                  Løsninger
+                  <span class="sr-only"> – åpne/lukke meny</span>
+                </summary>
+                <ul class="submenu" aria-label="Løsninger">
+                  <li><a href="bil.html">Bil</a></li>
+                  <li><a href="hus.html">Hus</a></li>
+                  <li><a href="klaer.html" aria-current="page">Klær</a></li>
+                  <li><a href="sko.html">Sko</a></li>
+                  <li><a href="vaer-daglig.html">Vær (daglig)</a></li>
+                  <li><a href="regn-aktiviteter.html">Aktiviteter</a></li>
+                  <li><a href="transport-sikkerhet.html">Transport &amp; sikkerhet</a></li>
+
+                  <!-- Nestet undermeny: For bedrifter -->
+                  <li class="dropdown">
+                    <details>
+                      <summary>
+                        For bedrifter
+                        <span class="sr-only"> – åpne/lukke undermeny</span>
+                      </summary>
+                      <ul class="submenu" aria-label="For bedrifter">
+                        <li><a href="for-bedrifter-produkter.html">Produkter</a></li>
+                        <li><a href="annonsering.html">Annonsering</a></li>
+                      </ul>
+                    </details>
+                  </li>
+                </ul>
+              </details>
+            </li>
+
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </nav>
+
+        <!-- Verktøylinje: søk og vær -->
+
+        <div class="toolrow">
+          <form class="nav-search" role="search" aria-label="Søk">
+            <label for="q" class="sr-only">Søk</label>
+            <input id="q" name="q" type="search" placeholder="Søk..." />
+          </form>
+
+          <div class="wx-mini-wrap">
+            <button
+              id="wx-mini"
+              class="wx-mini"
+              aria-expanded="false"
+              aria-controls="wx-popover"
+            >
+              <span class="wx-loc">📍 Bergen</span>
+              <span id="wx-mini-icon" aria-hidden="true">⛅</span>
+              <span id="wx-mini-temp">--°C</span>
+              <span class="sr-only">Åpne værdetaljer</span>
+            </button>
+            <div
+              id="wx-popover"
+              class="wx-popover"
+              role="dialog"
+              aria-label="Vær i Bergen"
+              hidden
+            >
+              <div class="wx-card">
+                <div class="wx-row">
+                  <div id="wx-icon" class="wx-icon" aria-hidden="true">⛅</div>
+                  <div class="wx-main">
+                    <div id="nowcast-status" class="wx-temp">Laster…</div>
+                    <div id="wx-desc" class="wx-desc">—</div>
+                  </div>
+                </div>
+                <ul id="nowcast-list" class="wx-tags"></ul>
+                <small id="nowcast-source" class="muted"></small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN: fokusmål for skip-lenke -->
+    <main id="main" class="container" tabindex="-1">
+      <h1>Klær og tilbehør i Bergensregnet</h1>
+      <p>
+        For et vått kystklima er lag-på-lag, riktig vannsøyle (mm) og god
+        pusteevne viktig. Refleksdetaljer og vannavvisende overflater gir
+        komfort og bedre synlighet i regn.
+      </p>
+
+      <!-- Anbefalinger (tabell) -->
+      <section aria-labelledby="anbefalinger">
+        <div class="section-box section--amber">
+          <h2 id="anbefalinger">Anbefalinger (tabell)</h2>
+          <div class="table-wrap table--stripe-left" style="--table-stripe: #75036f">
+            <table class="zebra">
+              <caption>Klær &amp; regn – hva lønner seg?</caption>
+              <thead>
+                <tr>
+                  <!-- Kolonneoverskrifter må ha scope="col" -->
+                  <th scope="col">Tema</th>
+                  <th scope="col">Anbefaling</th>
+                  <th scope="col">Hvorfor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <!-- Første celle identifiserer raden → scope="row" -->
+                  <th scope="row">Lag-på-lag</th>
+                  <td>Ull/syntet innerst, fleece/ull mellom, vanntett skall ytterst</td>
+                  <td>Holder varmen, transporterer fukt, beskytter mot regn</td>
+                </tr>
+                <tr>
+                  <th scope="row">Vannsøyle (mm)</th>
+                  <td>5 000+ for bybruk, 10 000–20 000 for kraftig regn</td>
+                  <td>Høyere tall = bedre motstand mot gjennomtrenging</td>
+                </tr>
+                <tr>
+                  <th scope="row">Pusteevne</th>
+                  <td>&ge; 5 000 g/m²/24h for hverdag, mer ved aktivitet</td>
+                  <td>Reduserer kondens og klam følelse</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hette/justering</th>
+                  <td>Justerbar hette, mansjetter og nedre kant</td>
+                  <td>Bedre skjerming og passform i vind/regn</td>
+                </tr>
+                <tr>
+                  <th scope="row">Synlighet</th>
+                  <td>Refleksdetaljer på jakke/sekker</td>
+                  <td>Mørke, regnfulle dager krever ekstra synlighet</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUKTER: KLÆR -->
+      <section class="section" aria-labelledby="produkter">
+        <h2 id="produkter">Anbefalte produkter (klær)</h2>
+        <div class="cards grid-3">
+          <article class="card feature card--blue" aria-labelledby="p1-tittel">
+            <figure>
+              <img src="../img/klaerprod1.jpg" alt="Regnjakke – høy vannsøyle (illustrasjon)" loading="lazy" />
+              <figcaption class="sr-only">Regn jakke – høy vannsøyle</figcaption>
+            </figure>
+            <h3 id="p1-tittel">Regn jakke (10–20k mm)</h3>
+            <p>Tapede sømmer, god pusteevne og justerbar hette.</p>
+            <p><a class="btn-link" href="#">Mer info</a></p>
+          </article>
+
+          <article class="card feature card--green" aria-labelledby="p2-tittel">
+            <figure>
+              <img src="../img/klaer.prod2.avif" alt="Regnsett for barn – jakke + bukse (illustrasjon)" loading="lazy" />
+              <figcaption class="sr-only">Regnsett for barn</figcaption>
+            </figure>
+            <h3 id="p2-tittel">Regnsett for barn</h3>
+            <p>Vanntett jakke + bukse, sveisede sømmer, reflekser.</p>
+            <p><a class="btn-link" href="#">Mer info</a></p>
+          </article>
+
+          <article class="card feature card--amber" aria-labelledby="p3-tittel">
+            <figure>
+              <img src="../img/klaerprod3.webp" alt="Regnbukse – høy vannsøyle og tapede sømmer (illustrasjon)" loading="lazy" />
+              <figcaption class="sr-only">Regnbukse – høy vannsøyle, tapede sømmer</figcaption>
+            </figure>
+            <h3 id="p3-tittel">Regnbukse</h3>
+            <p>Høy vannsøyle (10–20k mm), tapede sømmer og justerbar midje/ankel.</p>
+            <p><a class="btn-link" href="#">Mer info</a></p>
+          </article>
+        </div>
+      </section>
+
+      <!-- TILBEHØR -->
+      <section class="section" aria-labelledby="tilbehor">
+        <h2 id="tilbehor">Tilbehør / Aksessuarer</h2>
+        <div class="cards grid-3">
+          <article class="card feature card--purple" aria-labelledby="a1-tittel">
+            <figure>
+              <img src="../img/klaer.prod4.png" alt="Storm-paraply (illustrasjon)" loading="lazy" />
+              <figcaption class="sr-only">Storm-paraply</figcaption>
+            </figure>
+            <h3 id="a1-tittel">Storm-paraply</h3>
+            <p>Forsterkede spiler, vindtestet mekanisme, kompakt.</p>
+            <p><a class="btn-link" href="#">Mer info</a></p>
+          </article>
+
+          <article class="card feature card--teal" aria-labelledby="a2-tittel">
+            <figure>
+              <img src="../img/klaer.prod5.jpg" alt="Vanntett sekk – refleksdetaljer (illustrasjon)" loading="lazy" />
+              <figcaption class="sr-only">Vanntett sekk – refleksdetaljer</figcaption>
+            </figure>
+            <h3 id="a2-tittel">Vanntett sekk</h3>
+            <p>Rulltopp, reflekser og regntrekk – perfekt til pendling.</p>
+            <p><a class="btn-link" href="#">Mer info</a></p>
+          </article>
+
+          <article class="card feature card--rose" aria-labelledby="a3-tittel">
+            <figure>
+              <img src="../img/klaer.prod6.jpg" alt="Regntrekk for sekk (illustrasjon)" loading="lazy" />
+              <figcaption class="sr-only">Regntrekk for sekk</figcaption>
+            </figure>
+            <h3 id="a3-tittel">Regntrekk til sekk</h3>
+            <p>Refleksstripe, elastisk kant, passer 15–30L.</p>
+            <p><a class="btn-link" href="#">Mer info</a></p>
+          </article>
+
+          <article class="card feature card--amber" aria-labelledby="a4-tittel">
+            <figure>
+              <img src="../img/klaer.prod7.jpeg" alt="Regnhatt / sydvest (illustrasjon)" loading="lazy" />
+              <figcaption class="sr-only">Regnhatt / sydvest</figcaption>
+            </figure>
+            <h3 id="a4-tittel">Regnhatt (sydvest)</h3>
+            <p>Bred brem for ansikt/syn, justerbar stropp, lett å tørke.</p>
+            <p><a class="btn-link" href="#">Mer info</a></p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Passform -->
+      <section class="section-box section--blue" aria-labelledby="passform">
+        <h2 id="passform">Størrelse &amp; passform (korte tips)</h2>
+        <ul>
+          <li>La det være plass til ett mellomlag under skalljakken.</li>
+          <li>Mansjetter bør sitte tett, men ikke stramme.</li>
+          <li>Lengde som dekker hofter hindrer vanninnsig bakfra.</li>
+        </ul>
+      </section>
+
+      <!-- Vedlikehold -->
+      <section class="section-box section--teal" aria-labelledby="vedlikehold">
+        <h2 id="vedlikehold">Vedlikehold</h2>
+        <ul>
+          <li>Vask tekniske plagg uten tøymykner; skyllemiddel tetter membran.</li>
+          <li>Impregner jevnlig (DWR) for å bevare perleeffekt på ytterstoff.</li>
+          <li>Tørk plagg i romtemperatur; følg vaskeanvisning fra produsent.</li>
+        </ul>
+      </section>
+
+      <!-- Sikkerhet -->
+      <section class="section-box section--purple" aria-labelledby="sikkerhet">
+        <h2 id="sikkerhet">Sikkerhet</h2>
+        <ul>
+          <li>Bruk refleks i mørke/yr; vær godt synlig i trafikken.</li>
+          <li>Velg lue/pannebånd som passer under hetten ved vind.</li>
+          <li>Bytt våte sokker raskt for å unngå nedkjøling.</li>
+        </ul>
+      </section>
+
+      <!-- Reklamefelt -->
+      <section class="section" aria-labelledby="reklame">
+        <div class="container">
+          <aside class="card card--partners">
+            <h2 id="reklame">Reklamefelt</h2>
+            <p>Annonsør: <strong>RainCo</strong> – «Hold deg tørr i Bergensregnet».</p>
+          </aside>
+        </div>
+      </section>
+
+      <p><a href="#top" class="toplink">↑ Til toppen</a></p>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2025 Regnbyen Bergen A/S – Prosjektoppgave DAT111/ING100</p>
+      </div>
+    </footer>
+    <script src="../js/vaer.js" defer></script>
+  </body>
+</html>

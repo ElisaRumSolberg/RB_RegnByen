@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Regnbyen Bergen A/S – Vær (daglig)</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="vaer">
+    <!-- Skip-lenke: lar brukere hoppe forbi navigasjonen med tastatur -->
+    <a class="skip-link" href="#main">Hopp til innhold</a>
+
+    <!-- HEADER / NAVBAR -->
+    <div id="top"></div>
+    <header class="site-header" id="top">
+      <div class="container nav-wrap">
+        <a class="brand" href="hjemside.html">Regnbyen Bergen</a>
+
+        <!-- Semantisk nav; unngå listbox-roller i meny -->
+        <nav class="navbar" aria-label="Hovedmeny">
+          <ul class="menu">
+            <li><a href="hjemside.html">Hjem</a></li>
+            <li><a href="prosjekt.html">Om prosjektet</a></li>
+
+            <!-- Tastaturvennlig meny via <details>/<summary> -->
+            <li class="dropdown">
+              <details>
+                <summary>
+                  Løsninger
+                  <span class="sr-only"> – åpne/lukke meny</span>
+                </summary>
+                <ul class="submenu" aria-label="Løsninger">
+                  <li><a href="bil.html">Bil</a></li>
+                  <li><a href="hus.html">Hus</a></li>
+                  <li><a href="klaer.html">Klær</a></li>
+                  <li><a href="sko.html">Sko</a></li>
+                  <!-- Merk aktiv underside med aria-current -->
+                  <li><a href="vaer-daglig.html" aria-current="page">Vær (daglig)</a></li>
+                  <li><a href="regn-aktiviteter.html">Aktiviteter</a></li>
+                  <li><a href="transport-sikkerhet.html">Transport-sikkerhet</a></li>
+
+                  <!-- Nestet undermeny: For bedrifter -->
+                  <li class="dropdown">
+                    <details>
+                      <summary>
+                        For bedrifter
+                        <span class="sr-only"> – åpne/lukke undermeny</span>
+                      </summary>
+                      <ul class="submenu" aria-label="For bedrifter">
+                        <li><a href="for-bedrifter-produkter.html">Produkter</a></li>
+                        <li><a href="annonsering.html">Annonsering</a></li>
+                      </ul>
+                    </details>
+                  </li>
+                </ul>
+              </details>
+            </li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </nav>
+
+      <!-- Verktøylinje: søk og vær -->
+
+        <div class="toolrow">
+          <form class="nav-search" role="search" aria-label="Søk">
+            <label for="q" class="sr-only">Søk</label>
+            <input id="q" name="q" type="search" placeholder="Søk..." />
+          </form>
+
+          <div class="wx-mini-wrap">
+            <button
+              id="wx-mini"
+              class="wx-mini"
+              aria-expanded="false"
+              aria-controls="wx-popover"
+            >
+              <span class="wx-loc">📍 Bergen</span>
+              <span id="wx-mini-icon" aria-hidden="true">⛅</span>
+              <span id="wx-mini-temp">--°C</span>
+              <span class="sr-only">Åpne værdetaljer</span>
+            </button>
+            <div
+              id="wx-popover"
+              class="wx-popover"
+              role="dialog"
+              aria-label="Vær i Bergen"
+              hidden
+            >
+              <div class="wx-card">
+                <div class="wx-row">
+                  <div id="wx-icon" class="wx-icon" aria-hidden="true">⛅</div>
+                  <div class="wx-main">
+                    <div id="nowcast-status" class="wx-temp">Laster…</div>
+                    <div id="wx-desc" class="wx-desc">—</div>
+                  </div>
+                </div>
+                <ul id="nowcast-list" class="wx-tags"></ul>
+                <small id="nowcast-source" class="muted"></small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN: fokusmål for skip-lenken -->
+    <main id="main" tabindex="-1">
+      <!-- Intro -->
+      <section class="section" aria-labelledby="page-title">
+        <div class="container">
+          <h1 id="page-title">Vær (daglig) &amp; regn-tips</h1>
+          <p>Denne siden gir en enkel daglig oversikt og korte råd for våte dager.</p>
+        </div>
+      </section>
+
+      <!-- Daglig tabell -->
+       <noscript>
+      <section class="section" aria-labelledby="daglig">
+        <div class="container">
+          <div class="section-box section--amber">
+            <h2 id="daglig">Daglig oversikt (eksempel)</h2>
+            <div class="table-wrap">
+              <table class="zebra">
+                <caption>Vær i dag – timesvis (eksempel)</caption>
+                <thead>
+                  <tr>
+                    <!-- Kolonneoverskrifter bør ha scope="col" -->
+                    <th scope="col">Klokkeslett</th>
+                    <th scope="col">Nedbør</th>
+                    <th scope="col">Vind</th>
+                    <th scope="col">Notat</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>08:00</td>
+                    <td>Yr</td>
+                    <td>3 m/s</td>
+                    <td>Lett regnjakke holder</td>
+                  </tr>
+                  <tr>
+                    <td>12:00</td>
+                    <td>Regn</td>
+                    <td>5 m/s</td>
+                    <td>Paraply + hette</td>
+                  </tr>
+                  <tr>
+                    <td>16:00</td>
+                    <td>Regnbyger</td>
+                    <td>7 m/s</td>
+                    <td>Vind: paraply kan være upraktisk</td>
+                  </tr>
+                  <tr>
+                    <td>20:00</td>
+                    <td>Yr</td>
+                    <td>4 m/s</td>
+                    <td>Refleks anbefales</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="muted">*Data er kun eksempel for design/testing.</p>
+          </div>
+        </div>
+      </section>
+      </noscript>
+
+      <!-- Tips kort -->
+      <section class="section" aria-labelledby="tips">
+        <div class="container">
+          <h2 id="tips">Regn-tips (kort)</h2>
+          <div class="grid two">
+            <article class="card card--ls" style="--ls-color: #2563eb">
+              <h3>Før du går ut</h3>
+              <ul>
+                <li>Sjekk vind – sterk vind gjør paraply ubrukelig.</li>
+                <li>Lag-på-lag: base (tørker raskt) + skall.</li>
+                <li>Vanntett sko eller støvler + ekstra sokker.</li>
+              </ul>
+            </article>
+            <article class="card card--ls" style="--ls-color: #7c3aed">
+              <h3>Underveis</h3>
+              <ul>
+                <li>Refleks i skumring og regn.</li>
+                <li>Hold mobilen tørt (vanntett pose).</li>
+                <li>Velg ruter med god belysning og mindre vannsamling.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Regn-pakke -->
+      <section class="section" aria-labelledby="pakke">
+        <div class="container">
+          <div class="section-box section--teal">
+            <h2 id="pakke">Liten «regn-pakke»</h2>
+            <ul>
+              <li>Mini-paraply eller hette</li>
+              <li>Vanntett pose for elektronikk</li>
+              <li>Ekstra sokker &amp; lite håndkle</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Reklamefelt -->
+      <section class="section" aria-labelledby="reklame">
+        <div class="container">
+          <aside class="card card--partners">
+            <h2 id="reklame">Reklamefelt</h2>
+            <p>Annonsør: DryWear – «Vanntette klær for alle vær».</p>
+          </aside>
+        </div>
+      </section>
+
+      <p><a href="#top" class="toplink">↑ Til toppen</a></p>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2025 Regnbyen Bergen A/S – Prosjektoppgave DAT111/ING100</p>
+      </div>
+    </footer>
+    <script src="../js/vaer.js" defer></script>
+    <script src="../js/vaer-detail.js" defer></script>
+  </body>
+</html>

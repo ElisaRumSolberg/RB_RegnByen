@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Regnbyen Bergen A/S – Aktiviteter i regn</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <!-- Behold kun norsk klasse for konsistens -->
+  <body class="aktiviteter">
+    <!-- Skip-lenke: gjør det mulig å hoppe forbi navigasjon med tastatur -->
+    <a class="skip-link" href="#main">Hopp til innhold</a>
+
+    <div id="top"></div>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="hjemside.html">Regnbyen Bergen</a>
+
+        <!-- Semantisk nav; unngå listbox-roller i meny -->
+        <nav class="navbar" aria-label="Hovedmeny">
+          <ul class="menu">
+            <li><a href="hjemside.html">Hjem</a></li>
+            <li><a href="prosjekt.html">Om prosjektet</a></li>
+
+            <!-- Tastaturvennlig meny via <details>/<summary> -->
+            <li class="dropdown">
+              <details>
+                <summary>
+                  Løsninger
+                  <span class="sr-only"> – åpne/lukke meny</span>
+                </summary>
+                <ul class="submenu" aria-label="Løsninger">
+                  <li><a href="bil.html">Bil</a></li>
+                  <li><a href="hus.html">Hus</a></li>
+                  <li><a href="klaer.html">Klær</a></li>
+                  <li><a href="sko.html">Sko</a></li>
+                  <li><a href="vaer-daglig.html">Vær (daglig)</a></li>
+                  <!-- Merk aktiv underside med aria-current -->
+                  <li><a href="regn-aktiviteter.html" aria-current="page">Aktiviteter</a></li>
+                  <li><a href="transport-sikkerhet.html">Transport-sikkerhet</a></li>
+
+                  <!-- Nestet undermeny: For bedrifter -->
+                  <li class="dropdown">
+                    <details>
+                      <summary>
+                        For bedrifter
+                        <span class="sr-only"> – åpne/lukke undermeny</span>
+                      </summary>
+                      <ul class="submenu" aria-label="For bedrifter">
+                        <li><a href="for-bedrifter-produkter.html">Produkter</a></li>
+                        <li><a href="annonsering.html">Annonsering</a></li>
+                      </ul>
+                    </details>
+                  </li>
+                </ul>
+              </details>
+            </li>
+
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </nav>
+ <!-- Verktøylinje: søk og vær -->
+
+        <div class="toolrow">
+          <form class="nav-search" role="search" aria-label="Søk">
+            <label for="q" class="sr-only">Søk</label>
+            <input id="q" name="q" type="search" placeholder="Søk..." />
+          </form>
+
+          <div class="wx-mini-wrap">
+            <button
+              id="wx-mini"
+              class="wx-mini"
+              aria-expanded="false"
+              aria-controls="wx-popover"
+            >
+              <span class="wx-loc">📍 Bergen</span>
+              <span id="wx-mini-icon" aria-hidden="true">⛅</span>
+              <span id="wx-mini-temp">--°C</span>
+              <span class="sr-only">Åpne værdetaljer</span>
+            </button>
+            <div
+              id="wx-popover"
+              class="wx-popover"
+              role="dialog"
+              aria-label="Vær i Bergen"
+              hidden
+            >
+              <div class="wx-card">
+                <div class="wx-row">
+                  <div id="wx-icon" class="wx-icon" aria-hidden="true">⛅</div>
+                  <div class="wx-main">
+                    <div id="nowcast-status" class="wx-temp">Laster…</div>
+                    <div id="wx-desc" class="wx-desc">—</div>
+                  </div>
+                </div>
+                <ul id="nowcast-list" class="wx-tags"></ul>
+                <small id="nowcast-source" class="muted"></small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN: fokusmål for skip-lenken -->
+    <main id="main" tabindex="-1">
+      <!-- Intro -->
+      <section class="section" aria-labelledby="page-title">
+        <div class="container">
+          <h1 id="page-title">Innendørs & regnværsvennlige aktiviteter</h1>
+          <p>Her er forslag til ting du kan gjøre på en regnfull dag – for både turister og beboere.</p>
+        </div>
+      </section>
+
+      <!-- Kategorier -->
+      <section class="section" aria-labelledby="kategorier">
+        <div class="container">
+          <h2 id="kategorier">Kategorier</h2>
+          <div class="cards grid-3">
+            <article class="card card--ls" style="--ls-color: #2563eb">
+              <h3>Museer</h3>
+              <p>KODE, Akvariet, Bryggens Museum – perfekt for våte dager.</p>
+            </article>
+            <article class="card card--ls" style="--ls-color: #7c3aed">
+              <h3>Kafeer</h3>
+              <p>Hyggelige steder å jobbe/lese og varme deg på en kaffe.</p>
+            </article>
+            <article class="card card--ls" style="--ls-color: #d97706">
+              <h3>Aktiviteter</h3>
+              <p>Escape room, svømmehall, bibliotek, bowling og mer.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Flere forslag -->
+      <section class="section" aria-labelledby="temaforslag">
+        <div class="container">
+          <h2 id="temaforslag">Flere forslag</h2>
+          <div class="cards grid-3">
+            <article class="card card--ls" style="--ls-color: #2563eb" aria-labelledby="barn-tittel">
+              <h3 id="barn-tittel">For barn</h3>
+              <ul>
+                <li>Akvariet – fôringsshow og innendørs soner</li>
+                <li>Bibliotekets barneavdeling & høytlesning</li>
+                <li>Innendørs lekeland eller klatrevegg nybegynner</li>
+              </ul>
+            </article>
+
+            <article class="card card--ls" style="--ls-color: #7c3aed" aria-labelledby="date-tittel">
+              <h3 id="date-tittel">Date night</h3>
+              <ul>
+                <li>Gallerirunde på KODE + dessertkafé</li>
+                <li>Vinbar / kaffebrenneri-smaking</li>
+                <li>Escape room to-manns-team</li>
+              </ul>
+            </article>
+
+            <article class="card card--ls" style="--ls-color: #f59e0b" aria-labelledby="gratis-tittel">
+              <h3 id="gratis-tittel">Gratis / lavbudsjett</h3>
+              <ul>
+                <li>Bybanen til endestasjon + kort byvandring</li>
+                <li>Biblioteket: aviser, spill, studieplasser</li>
+                <li>Kirker/arkitektur – rask innendørsrunde</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Åpningstider -->
+      <section class="section" aria-labelledby="apningstider">
+        <div class="container">
+          <div class="section-box section--amber">
+            <h2 id="apningstider">Åpningstider (utvalg)</h2>
+            <div class="table-wrap">
+              <table class="zebra">
+                <caption>Forslag til steder og tider (eksempel)</caption>
+                <thead>
+                  <tr>
+                    <!-- Kolonneoverskrifter -->
+                    <th scope="col">Sted</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Hverdager</th>
+                    <th scope="col">Helg</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <!-- Første celle identifiserer raden → scope="row" -->
+                    <th scope="row">KODE</th>
+                    <td>Museum</td>
+                    <td>11–17</td>
+                    <td>11–17</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Akvariet</th>
+                    <td>Attraksjon</td>
+                    <td>10–18</td>
+                    <td>10–18</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Biblioteket</th>
+                    <td>Kultur</td>
+                    <td>10–19</td>
+                    <td>10–16</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- Valgfritt: liten hjelpetekst om at tider kan variere -->
+            <p class="muted">Obs: Åpningstider kan endre seg ved høytid/arrangementer.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ruter -->
+      <section class="section" aria-labelledby="ruter">
+        <div class="container">
+          <h2 id="ruter">Foreslåtte ruter</h2>
+          <article class="card card--ls" style="--ls-color: #14b8a6">
+            <h3>«3-timers regnbytur»</h3>
+            <ol>
+              <li>Kort byvandring på Bryggen (med regnjakke!)</li>
+              <li>Inn på KODE for utstillinger</li>
+              <li>Kaffe & kanelbolle i sentrum</li>
+            </ol>
+          </article>
+        </div>
+      </section>
+
+      <!-- Reklamefelt -->
+      <section class="section" aria-labelledby="reklame">
+        <div class="container">
+          <aside class="card card--partners">
+            <h2 id="reklame">Reklamefelt</h2>
+            <p>Annonsør: WetGrip Dekk – «Bedre kontroll på våt vei».</p>
+          </aside>
+        </div>
+      </section>
+
+      <p><a class="toplink" href="#top">↑ Til toppen</a></p>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2025 Regnbyen Bergen A/S – Prosjektoppgave DAT111/ING100</p>
+      </div>
+    </footer>
+    <script src="../js/vaer.js" defer></script>
+  </body>
+</html>
